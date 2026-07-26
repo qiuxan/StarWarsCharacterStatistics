@@ -1,14 +1,14 @@
-using Application.StartWarCharacter;
+using Application.StarWarCharacter;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StarWarsCharacterStatistics.Controllers;
 
 [ApiController]
-public class StartWarController : ControllerBase
+public class StarWarController : ControllerBase
 {
     private readonly CalculateHeightWeightDataUseCase _calculateHeightWeightDataUseCase;
 
-    public StartWarController(CalculateHeightWeightDataUseCase calculateHeightWeightDataUseCase)
+    public StarWarController(CalculateHeightWeightDataUseCase calculateHeightWeightDataUseCase)
     {
         _calculateHeightWeightDataUseCase = calculateHeightWeightDataUseCase;
     }

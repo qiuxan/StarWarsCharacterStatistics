@@ -1,9 +1,14 @@
-namespace Application.StartWarCharacter.Dtos;
+using System.Text.Json.Serialization;
+
+namespace Infrastructure.Dtos;
 
 public record HttpCharacter()
 {
-    public string height { set; get; }
-    public string mass { set; get; }
+    [JsonPropertyName("height")]
+    public string Height { get; set; } = string.Empty;
+    
+    [JsonPropertyName("mass")]
+    public string Mass { get; set; } = string.Empty;
 };
 
 public record HttpCharacterResponse()

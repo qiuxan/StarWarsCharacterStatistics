@@ -1,4 +1,4 @@
-using Application.StartWarCharacter;
+using Application.StarWarCharacter;
 using Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<CalculateHeightWeightDataUseCase>();
-builder.Services.AddScoped<ISartWarCharacterRepository,SartWarCharacterRepository>();
+builder.Services.AddHttpClient<IStarWarCharacterRepository, StarWarCharacterRepository>();
 
 var app = builder.Build();
 

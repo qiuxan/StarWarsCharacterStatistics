@@ -1,4 +1,4 @@
-namespace Application.StartWarCharacter.Dtos;
+namespace Application.StarWarCharacter.Dtos;
 
 public record StarWarHeightAndWeightResponse
 {
