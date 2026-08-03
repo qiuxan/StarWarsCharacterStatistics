@@ -1,5 +1,6 @@
 using Application.StarWarCharacter;
 using Infrastructure.Repositories;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,17 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<CalculateHeightWeightDataUseCase>();
-builder.Services.AddHttpClient<IStarWarCharacterRepository, StarWarCharacterRepository>();
+builder.Services
+    .AddHttpClient<IStarWarCharacterRepository, StarWarCharacterRepository>(client =>
+    {
+        client.Timeout = TimeSpan.FromSeconds(10);
+    })
+    .AddStandardResilienceHandler(options =>
+    {
+        options.Retry.MaxRetryAttempts = 3;
+        options.Retry.Delay = TimeSpan.FromSeconds(1);
+        options.Retry.BackoffType = DelayBackoffType.Exponential;
+    });
 
 var app = builder.Build();
 
